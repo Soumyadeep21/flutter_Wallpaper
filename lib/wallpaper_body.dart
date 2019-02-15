@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_wallpaper/wallpaper_viewer.dart';
 
 
+
 class WallpaperHome extends StatefulWidget {
   @override
   _WallpaperHomeState createState() => _WallpaperHomeState();
 }
 
-class _WallpaperHomeState extends State<WallpaperHome> with SingleTickerProviderStateMixin{
+class _WallpaperHomeState extends State<WallpaperHome> with SingleTickerProviderStateMixin,AutomaticKeepAliveClientMixin{
   
   TabController _tabController;
   static var _TabPages = <Widget>[
@@ -62,6 +63,10 @@ class _WallpaperHomeState extends State<WallpaperHome> with SingleTickerProvider
       ),
     );
   }
+
+  @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
 }
 
 

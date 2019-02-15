@@ -1,9 +1,10 @@
-
+import 'dart:async';
 import 'dart:convert';
 import 'package:flutter_wallpaper/fullscreen_image.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 
 class displayWallpaper extends StatefulWidget {
@@ -16,7 +17,7 @@ class displayWallpaper extends StatefulWidget {
   }
 }
 
-class displayWallpaperState extends State<displayWallpaper> {
+class displayWallpaperState extends State<displayWallpaper> with AutomaticKeepAliveClientMixin{
 
   //String url = "https://pixabay.com/api/?key=11308358-67ad92507710cb90567e4924c&q=sports+car&image_type=photo&pretty=true";
   bool isDataLoaded = false;
@@ -47,6 +48,7 @@ class displayWallpaperState extends State<displayWallpaper> {
       return Container(
         color: Colors.black,
         child: StaggeredGridView.countBuilder(
+          addAutomaticKeepAlives: true,
           padding: EdgeInsets.all(4.0),
           crossAxisCount: 4,
           itemCount: data.length,
@@ -58,10 +60,11 @@ class displayWallpaperState extends State<displayWallpaper> {
               child: InkWell(
                 child: Hero(
                     tag: imgPath,
-                    child: FadeInImage(
+                    child: CachedNetworkImage(
                         fit: BoxFit.cover,
-                        placeholder: AssetImage('images/place_holder.png'),
-                        image: NetworkImage(imgPath)
+                        placeholder: Image.asset('images/place_holder.png'),
+                        errorWidget: Icon(Icons.error),
+                        imageUrl: imgPath,
                     )
                 ),
                 onTap: (){
@@ -87,4 +90,8 @@ class displayWallpaperState extends State<displayWallpaper> {
           color: Colors.black,
       );
   }
+
+  @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
 }

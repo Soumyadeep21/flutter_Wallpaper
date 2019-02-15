@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class FullScreenImagePage extends StatelessWidget {
   String imgPath;
@@ -21,7 +22,7 @@ class FullScreenImagePage extends StatelessWidget {
                 alignment: Alignment.center,
                 child: new Hero(
                   tag: imgPath,
-                  child: new Image.network(imgPath),
+                  child: Image(image: CachedNetworkImageProvider(imgPath)),
                 ),
               ),
               new Align(
