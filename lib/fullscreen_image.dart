@@ -6,7 +6,7 @@ class FullScreenImagePage extends StatelessWidget {
   FullScreenImagePage(this.imgPath);
 
   final LinearGradient backgroundGradient = new LinearGradient(
-      colors: [Colors.yellowAccent,Colors.black,Colors.greenAccent],
+      colors: [Colors.red,Colors.white,Colors.blue],
       begin: Alignment.bottomRight,
       end: Alignment.topLeft);
 
